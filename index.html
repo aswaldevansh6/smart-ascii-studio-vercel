@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0d1223">
+  <title>Smart ASCII Studio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand-mark">✦</div>
+      <h2>Conversion Settings</h2>
+
+      <div class="setting-block">
+        <label for="width">ASCII Output Width</label>
+        <div class="range-value"><output id="widthValue">100</output></div>
+        <input id="width" type="range" min="40" max="180" value="100">
+      </div>
+
+      <label class="check-row"><input id="invert" type="checkbox"> <span>Invert Brightness</span></label>
+      <label class="check-row"><input id="adaptive" type="checkbox" checked> <span>Adaptive Contrast</span></label>
+      <label class="check-row"><input id="edge" type="checkbox"> <span>Edge-Aware Enhancement</span></label>
+
+      <div class="setting-block">
+        <label for="style">Choose ASCII Style</label>
+        <select id="style">
+          <option value="@%#*+=-:. ">Standard</option>
+          <option value="$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\\|()1{}[]?-_+~<>i!lI;:,&quot;^`'. ">Detailed</option>
+          <option value="#*:. ">Simple</option>
+          <option value="█▓▒░ ">Blocks</option>
+        </select>
+      </div>
+
+      <label class="check-row comparison-toggle">
+        <input id="comparison" type="checkbox">
+        <span>Enable Comparison Mode</span>
+      </label>
+
+      <div class="sidebar-note">Images are processed locally in your browser.</div>
+    </aside>
+
+    <main class="main-content">
+      <header class="top-header">
+        <div class="title-row">
+          <div class="app-icon">🖼️</div>
+          <div>
+            <h1>Smart ASCII Studio</h1>
+            <p>Transform images into ASCII art using adaptive image processing.</p>
+          </div>
+        </div>
+      </header>
+
+      <section class="upload-card">
+        <div class="section-eyebrow">CHOOSE IMAGE SOURCE</div>
+        <div class="source-choice"><span class="active-dot"></span> Upload Image</div>
+        <label class="drop-zone" for="imageInput">
+          <span class="upload-button">⇧ &nbsp; Upload</span>
+          <span class="upload-help">JPG, PNG or WEBP image</span>
+          <input id="imageInput" type="file" accept="image/png,image/jpeg,image/webp">
+        </label>
+        <p id="message" class="status-message">Please upload a JPG or PNG image to get started.</p>
+      </section>
+
+      <section class="features">
+        <h2>Features</h2>
+        <ul>
+          <li>Adaptive Contrast</li>
+          <li>Edge-Aware Enhancement</li>
+          <li>Multiple ASCII Styles</li>
+          <li>Normal vs Enhanced Comparison</li>
+          <li>Downloadable ASCII Output</li>
+        </ul>
+      </section>
+
+      <section id="singleResults" class="results-grid">
+        <article class="result-card">
+          <h3>Original Image</h3>
+          <div class="image-stage"><img id="preview" alt="Selected image preview"></div>
+        </article>
+        <article class="result-card">
+          <h3>ASCII Output</h3>
+          <pre id="output">Your ASCII art will appear here.</pre>
+        </article>
+      </section>
+
+      <section id="comparisonResults" class="comparison-grid" hidden>
+        <article class="result-card">
+          <h3>Normal ASCII</h3>
+          <pre id="normalOutput">Normal conversion will appear here.</pre>
+        </article>
+        <article class="result-card">
+          <h3>Enhanced ASCII</h3>
+          <pre id="enhancedOutput">Enhanced conversion will appear here.</pre>
+        </article>
+      </section>
+
+      <div class="download-row">
+        <button id="convert" class="primary-button" disabled>Convert to ASCII</button>
+        <button id="downloadTxt" disabled>Download TXT</button>
+        <button id="downloadPng" disabled>Download ASCII PNG</button>
+      </div>
+      <canvas id="workCanvas" hidden></canvas>
+      <canvas id="exportCanvas" hidden></canvas>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
